@@ -1,0 +1,10 @@
+Package: tpcrontools
+Version: {version}
+Section: utils
+Priority: optional
+Architecture: all
+Installed-Size: {size}
+Depends: python3
+Maintainer: Tomas Srb <tomas.srb@travelportgds.cz>
+Homepage: https://github.com/Travelport-Czech/tpcrontools
+Description: Tool for manage cron jobs

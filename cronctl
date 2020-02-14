@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+""" Tool for manage jobs in crontab"""
+
+import sys
+import logging
+import argparse
+import textwrap
+from tpcrontools.cronctllib import list_paths, add_paths, remove_paths
+
+def main():
+    """Argument parse and main loop over given paths"""
+    parser = argparse.ArgumentParser(
+        description=textwrap.dedent(__doc__),
+        epilog=textwrap.dedent("""
+    Example of job file header:
+      #!/usr/bin/env bash
+  
+      #PT:cron:10 1,2,3,4 * * *
+      #PDI:cron:40 5,6,7,8 * * *
+
+    With this example "cronctl --add I /robots/scripts" adds to the current user's crontab row:
+    40 5,6,7,8 * * * /robots/scripts/example.sh
+    """),
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser_mode = parser.add_mutually_exclusive_group(required=True)
+
+    parser_mode.add_argument(
+        '--list',
+        action='store_true',
+        help='List all robots sorted by type'
+    )
+    parser_mode.add_argument(
+        '--add',
+        dest='type',
+        help='Add jobs of the appropriate type from the specified path'
+    )
+    parser_mode.add_argument(
+        '--remove',
+        action='store_true',
+        help='Remove all jobs with given path'
+    )
+    parser.add_argument(
+        'path',
+        nargs='+',
+        help='Path to folder with job scripts'
+    )
+    parser.add_argument(
+        '-f', '--force',
+        action='store_true',
+        help='Store changes into crontab without confirmation'
+    )
+    args = parser.parse_args()
+
+    if args.list:
+        return list_paths(args.path)
+    elif args.remove:
+        return remove_paths(args.path, args.force)
+    elif args.type:
+        return add_paths(args.path, args.type, args.force)
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.ERROR)
+    sys.exit(0 if main() else 1)

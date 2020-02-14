@@ -1,0 +1,13 @@
+{
+  "name": "tpcrontools",
+  "version": "1.0.0",
+  "description": "Tool for manage cron jobs.",
+  "bin": {
+    "cronctl": "./cronctl"
+  },
+  "scripts": {
+    "test" : "python3 -m unittest",
+    "coverage": "coverage run -m unittest; coverage html -d ~/www/htmlcov"
+  }
+}
+  
