@@ -3,13 +3,27 @@
   "version": "1.0.0",
   "description": "Tool for manage cron jobs.",
   "bin": {
-    "cronctl": "./cronctl"
+    "cronctl": "cronctl"
   },
   "scripts": {
-    "test" : "python3 -m unittest",
+    "test": "python3 -m unittest",
     "coverage": "coverage run -m unittest; coverage html -d ~/www/htmlcov"
   },
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Travelport-Czech/tpcrontools.git"
+  },
+  "author": "Tomáš Srb <tomas.srb@travelportgds.cz> (https://www.cee-systems.com/)",
+  "bugs": {
+    "url": "https://github.com/Travelport-Czech/tpcrontools/issues"
+  },
+  "homepage": "https://github.com/Travelport-Czech/tpcrontools#readme"
 }
