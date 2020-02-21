@@ -1,6 +1,6 @@
 {
   "name": "@travelport-czech/tpcrontools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tool for manage cron jobs.",
   "bin": {
     "cronctl": "cronctl"
